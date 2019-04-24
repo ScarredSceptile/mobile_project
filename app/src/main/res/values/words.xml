@@ -39,7 +39,7 @@
     <string name="word37">Tower</string>
     <string name="word38">Mickey Mouse</string>
     <string name="word39">Singing</string>
-    <String name="word30">Dancing</String>
+    <string name="word40">Dancing</string>
     <string name="word41">Moat</string>
     <string name="word42">Clotheshorse</string>
     <string name="word43">Scrambled eggs</string>
@@ -59,7 +59,7 @@
     <string name="word57">Horse</string>
     <string name="word58">Knight</string>
     <string name="word59">Farmer</string>
-    <String name="word60">Scythe</String>
+    <string name="word60">Scythe</string>
     <string name="word61">Paper plate</string>
     <string name="word62">Refrigerator</string>
     <string name="word63">Sweat</string>
@@ -139,7 +139,7 @@
     <string name="word137">Pocketknife</string>
     <string name="word138">Watermelon</string>
     <string name="word139">Camel</string>
-    <String name="word130">Pyramid</String>
+    <string name="word140">Pyramid</string>
     <string name="word141">China</string>
     <string name="word142">Bow</string>
     <string name="word143">Cookie jar</string>
@@ -159,7 +159,7 @@
     <string name="word157">Hammer</string>
     <string name="word158">Glove</string>
     <string name="word159">Knee</string>
-    <String name="word160">Eyes</String>
+    <string name="word160">Eyes</string>
     <string name="word161">Cow</string>
     <string name="word162">Candle</string>
     <string name="word163">Superman</string>
