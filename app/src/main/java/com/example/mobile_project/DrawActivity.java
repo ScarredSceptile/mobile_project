@@ -3,6 +3,7 @@ package com.example.mobile_project;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -22,6 +23,7 @@ public class DrawActivity extends AppCompatActivity {
     MyCanvas myCanvas;
     private Bitmap b;
     Button clearButton;
+    Canvas canvas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,8 @@ public class DrawActivity extends AppCompatActivity {
 
         wordView.setText(drawWord);
 
+        myCanvas = new MyCanvas(this, null);
+
         new CountDownTimer(10000, 1000) {
             public void onTick(long millisUntilFinished) {
                 timerText.setText(String.valueOf(millisUntilFinished / 1000));
@@ -45,6 +49,7 @@ public class DrawActivity extends AppCompatActivity {
             public void onFinish() {
                 setContentView(R.layout.activity_draw);
 
+                myCanvas = findViewById(R.id.myCanvas);
                 clearButton = findViewById(R.id.button2);
 
                 clearButton.setOnClickListener(new View.OnClickListener() {
@@ -53,19 +58,24 @@ public class DrawActivity extends AppCompatActivity {
                 try{
                     myCanvas.setDrawingCacheEnabled(true);
                     b = myCanvas.getDrawingCache();
+                    File newBitmap = null;
 
-                    File fileDirectory = new File(Environment.getExternalStorageDirectory() + "project_test");
-                    fileDirectory.mkdirs();
 
-                    String filePath = Environment.getExternalStorageDirectory().getAbsolutePath();
-                    String file = "test.png";
-                    final File newBitmap = new File(fileDirectory, file);
                     try
                     {
-                        newBitmap.createNewFile();
+                        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                            File file = new File(Environment.getExternalStorageDirectory(), "project_test");
+                            if (!file.exists()){
+                                file.mkdirs();
+                            }
+
+                            System.out.println("saving......................................................"+ file.getAbsolutePath() + "test" + ".png");
+
+                            newBitmap = new File(file.getAbsolutePath() + "/test" + ".png");
+                        }
                         FileOutputStream ostream = new FileOutputStream(newBitmap);
                         b.compress(Bitmap.CompressFormat.PNG, 10, ostream);
-                        System.out.println("saving......................................................"+filePath+file);
+                        System.out.println("saving......................................................");
                         ostream.close();
                     }
                     catch (Exception e)
