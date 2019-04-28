@@ -10,11 +10,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class DrawActivity extends AppCompatActivity {
@@ -98,6 +95,7 @@ public class DrawActivity extends AppCompatActivity {
             // other 'case' lines to check for other
             // permissions this app might request
         }
+
     }
 
 

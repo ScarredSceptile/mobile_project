@@ -21,6 +21,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(draw);
             }
         });
+        Button wordButton = findViewById(R.id.button5);
+        wordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                final Intent word = new Intent(MainActivity.this, WordActivity.class);
+                startActivity(word);
+            }
+        });
     }
 
 }

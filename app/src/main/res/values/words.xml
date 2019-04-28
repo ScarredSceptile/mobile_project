@@ -1,203 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="word1">Forehead</string>
-    <string name="word2">Barbecue</string>
-    <string name="word3">Mistletoe</string>
-    <string name="word4">Winter Garden</string>
-    <string name="word5">Toilet brush</string>
-    <string name="word6">Well</string>
-    <string name="word7">Canada</string>
-    <string name="word8">Wine bottle</string>
-    <string name="word9">Chest</string>
-    <string name="word10">Wallet</string>
-    <string name="word11">Bread</string>
-    <string name="word12">Venison</string>
-    <string name="word13">Walking the plank</string>
-    <string name="word14">Corncob</string>
-    <string name="word15">Neptune</string>
-    <string name="word16">Carrot cake</string>
-    <string name="word17">Hymn</string>
-    <string name="word18">Hotel</string>
-    <string name="word19">Shoe Polish</string>
-    <string name="word20">Ice cream truck</string>
-    <string name="word21">Cinnamon</string>
-    <string name="word22">Southern Ocean</string>
-    <string name="word23">Chicken breast</string>
-    <string name="word24">Billiard</string>
-    <string name="word25">Peg</string>
-    <string name="word26">Omelet</string>
-    <string name="word27">Wine cork</string>
-    <string name="word28">Tennis ball</string>
-    <string name="word29">School</string>
-    <string name="word30">Unicycle</string>
-    <string name="word31">Crown</string>
-    <string name="word32">Priest</string>
-    <string name="word33">Church</string>
-    <string name="word34">Mouse</string>
-    <string name="word35">Pickaxe</string>
-    <string name="word36">Map</string>
-    <string name="word37">Tower</string>
-    <string name="word38">Mickey Mouse</string>
-    <string name="word39">Singing</string>
-    <string name="word40">Dancing</string>
-    <string name="word41">Moat</string>
-    <string name="word42">Clotheshorse</string>
-    <string name="word43">Scrambled eggs</string>
-    <string name="word44">Backpacking</string>
-    <string name="word45">Parachute</string>
-    <string name="word46">Cornflakes</string>
-    <string name="word47">Macaroni</string>
-    <string name="word48">Troll</string>
-    <string name="word49">Swiss roll</string>
-    <string name="word50">Magnifying glass</string>
-    <string name="word51">Potato</string>
-    <string name="word52">Barbarian</string>
-    <string name="word53">Bow</string>
-    <string name="word54">Arrow</string>
-    <string name="word55">Archer</string>
-    <string name="word56">Lance</string>
-    <string name="word57">Horse</string>
-    <string name="word58">Knight</string>
-    <string name="word59">Farmer</string>
-    <string name="word60">Scythe</string>
-    <string name="word61">Paper plate</string>
-    <string name="word62">Refrigerator</string>
-    <string name="word63">Sweat</string>
-    <string name="word64">Queen</string>
-    <string name="word65">Dollar</string>
-    <string name="word66">Ribs</string>
-    <string name="word67">Tattoo</string>
-    <string name="word68">Disney Land</string>
-    <string name="word69">Braid</string>
-    <string name="word70">Photo album</string>
-    <string name="word71">Rocket</string>
-    <string name="word72">Armpit</string>
-    <string name="word73">Shoe</string>
-    <string name="word74">One Piece</string>
-    <string name="word75">Toilet brush</string>
-    <string name="word76">Double Chin</string>
-    <string name="word77">Forest</string>
-    <string name="word78">Playground</string>
-    <string name="word79">Pudding</string>
-    <string name="word80">Television</string>
-    <string name="word81">Kettle</string>
-    <string name="word82">Shorts</string>
-    <string name="word83">Suitcase</string>
-    <string name="word84">Concert</string>
-    <string name="word85">Student</string>
-    <string name="word86">Keychain</string>
-    <string name="word87">America</string>
-    <string name="word88">Norway</string>
-    <string name="word89">Australia</string>
-    <string name="word90">Japan</string>
-    <string name="word91">Cat</string>
-    <string name="word92">Dog</string>
-    <string name="word93">Palm tree</string>
-    <string name="word94">Book</string>
-    <string name="word95">Camera</string>
-    <string name="word96">Mop</string>
-    <string name="word97">Shoe lace</string>
-    <string name="word98">Banana</string>
-    <string name="word99">Soap</string>
-    <string name="word100">Tomato</string>
-    <string name="word101">Perfume</string>
-    <string name="word102">Hanger</string>
-    <string name="word103">Truck</string>
-    <string name="word104">Tooth pick</string>
-    <string name="word105">Toes</string>
-    <string name="word106">Pen</string>
-    <string name="word107">Keyboard</string>
-    <string name="word108">Box</string>
-    <string name="word109">Tree</string>
-    <string name="word110">Balloon</string>
-    <string name="word111">Shovel</string>
-    <string name="word112">Couch</string>
-    <string name="word113">Thread</string>
-    <string name="word114">Sailboat</string>
-    <string name="word115">Glasses</string>
-    <string name="word116">Clock</string>
-    <string name="word117">Tire swing</string>
-    <string name="word118">Ring</string>
-    <string name="word119">Toilet</string>
-    <string name="word120">Magnet</string>
-    <string name="word121">Flag</string>
-    <string name="word122">Bedroom</string>
-    <string name="word123">Shower</string>
-    <string name="word124">Tears</string>
-    <string name="word125">Sword</string>
-    <string name="word126">Street light</string>
-    <string name="word127">France</string>
-    <string name="word128">Germany</string>
-    <string name="word129">Africa</string>
-    <string name="word130">Europe</string>
-    <string name="word131">Mushrooms</string>
-    <string name="word132">Toilet Paper</string>
-    <string name="word133">Stir Fry</string>
-    <string name="word134">Family</string>
-    <string name="word135">Bacon</string>
-    <string name="word136">Shadow</string>
-    <string name="word137">Pocketknife</string>
-    <string name="word138">Watermelon</string>
-    <string name="word139">Camel</string>
-    <string name="word140">Pyramid</string>
-    <string name="word141">China</string>
-    <string name="word142">Bow</string>
-    <string name="word143">Cookie jar</string>
-    <string name="word144">Backpack</string>
-    <string name="word145">Airplane</string>
-    <string name="word146">Cruise Ship</string>
-    <string name="word147">Bookmark</string>
-    <string name="word148">Watch</string>
-    <string name="word149">Button</string>
-    <string name="word150">Pig</string>
-    <string name="word151">Yoshi</string>
-    <string name="word152">Fountain</string>
-    <string name="word153">Tea bag</string>
-    <string name="word154">Four-leaf clover</string>
-    <string name="word155">Flower</string>
-    <string name="word156">Screwdriver</string>
-    <string name="word157">Hammer</string>
-    <string name="word158">Glove</string>
-    <string name="word159">Knee</string>
-    <string name="word160">Eyes</string>
-    <string name="word161">Cow</string>
-    <string name="word162">Candle</string>
-    <string name="word163">Superman</string>
-    <string name="word164">King</string>
-    <string name="word165">Living room</string>
-    <string name="word166">TV stand</string>
-    <string name="word167">Phone</string>
-    <string name="word168">Hat</string>
-    <string name="word169">Baseball</string>
-    <string name="word170">Window</string>
-    <string name="word171">Spider</string>
-    <string name="word172">Neck</string>
-    <string name="word173">Giraffe</string>
-    <string name="word174">Fork</string>
-    <string name="word175">Spoon</string>
-    <string name="word176">Knife</string>
-    <string name="word177">Highway</string>
-    <string name="word178">Bicycle</string>
-    <string name="word179">Tricycle</string>
-    <string name="word180">Lake</string>
-    <string name="word181">Rain</string>
-    <string name="word182">Lottery</string>
-    <string name="word183">Chair</string>
-    <string name="word184">Rubber Duck</string>
-    <string name="word185">Lost</string>
-    <string name="word186">Maze</string>
-    <string name="word187">Ski Resort</string>
-    <string name="word188">Italy</string>
-    <string name="word189">Greece</string>
-    <string name="word190">Spain</string>
-    <string name="word191">Russia</string>
-    <string name="word192">Earth</string>
-    <string name="word193">Sun</string>
-    <string name="word194">Saturn</string>
-    <string name="word195">Ice cream</string>
-    <string name="word196">Headset</string>
-    <string name="word197">Little Red Riding Hood</string>
-    <string name="word198">Fish</string>
-    <string name="word199">Witch</string>
-    <string name="word200">Moon</string>
+    <string-array name="words">
+        <item>Forehead</item>
+        <item>Barbecue</item>
+        <item>Mistletoe</item>
+        <item>Winter Garden</item>
+        <item>Toilet brush</item>
+        <item>Well</item>
+        <item>Canada</item>
+        <item>Wine bottle</item>
+        <item>Chest</item>
+        <item>Wallet</item>
+        <item>Bread</item>
+        <item>Venison</item>
+        <item>Walking the plank</item>
+        <item>Corncob</item>
+        <item>Neptune</item>
+        <item>Carrot cake</item>
+        <item>Hymn</item>
+        <item>Hotel</item>
+        <item>ShoePolish</item>
+        <item>Ice cream truck</item>
+        <item>Cinnamon</item>
+        <item>SouthernOcean</item>
+        <item>Chicken breast</item>
+        <item>Billiard</item>
+        <item>Peg</item>
+        <item>Omelet</item>
+        <item>Wine cork</item>
+        <item>Tennis ball</item>
+        <item>School</item>
+        <item>Unicycle</item>
+        <item>Crown</item>
+        <item>Priest</item>
+        <item>Church</item>
+        <item>Mouse</item>
+        <item>Pickaxe</item>
+        <item>Map</item>
+        <item>Tower</item>
+        <item>MickeyMouse</item>
+        <item>Singing</item>
+        <item>Dancing</item>
+        <item>Moat</item>
+        <item>Clotheshorse</item>
+        <item>Scrambled eggs</item>
+        <item>Backpacking</item>
+        <item>Parachute</item>
+        <item>Cornflakes</item>
+        <item>Macaroni</item>
+        <item>Troll</item>
+        <item>Swiss roll</item>
+        <item>Magnifying glass</item>
+        <item>Potato</item>
+        <item>Barbarian</item>
+        <item>Bow</item>
+        <item>Arrow</item>
+        <item>Archer</item>
+        <item>Lance</item>
+        <item>Horse</item>
+        <item>Knight</item>
+        <item>Farmer</item>
+        <item>Scythe</item>
+        <item>Paper plate</item>
+        <item>Refrigerator</item>
+        <item>Sweat</item>
+        <item>Queen</item>
+        <item>Dollar</item>
+        <item>Ribs</item>
+        <item>Tattoo</item>
+        <item>DisneyLand</item>
+        <item>Braid</item>
+        <item>Photo album</item>
+        <item>Rocket</item>
+        <item>Armpit</item>
+        <item>Shoe</item>
+        <item>OnePiece</item>
+        <item>Toilet brush</item>
+        <item>DoubleChin</item>
+        <item>Forest</item>
+        <item>Playground</item>
+        <item>Pudding</item>
+        <item>Television</item>
+        <item>Kettle</item>
+        <item>Shorts</item>
+        <item>Suitcase</item>
+        <item>Concert</item>
+        <item>Student</item>
+        <item>Keychain</item>
+        <item>America</item>
+        <item>Norway</item>
+        <item>Australia</item>
+        <item>Japan</item>
+        <item>Cat</item>
+        <item>Dog</item>
+        <item>Palm tree</item>
+        <item>Book</item>
+        <item>Camera</item>
+        <item>Mop</item>
+        <item>Shoelace</item>
+        <item>Banana</item>
+        <item>Soap</item>
+        <item>Tomato</item>
+        <item>Perfume</item>
+        <item>Hanger</item>
+        <item>Truck</item>
+        <item>Toothpick</item>
+        <item>Toes</item>
+        <item>Pen</item>
+        <item>Keyboard</item>
+        <item>Box</item>
+        <item>Tree</item>
+        <item>Balloon</item>
+        <item>Shovel</item>
+        <item>Couch</item>
+        <item>Thread</item>
+        <item>Sailboat</item>
+        <item>Glasses</item>
+        <item>Clock</item>
+        <item>Tire swing</item>
+        <item>Ring</item>
+        <item>Toilet</item>
+        <item>Magnet</item>
+        <item>Flag</item>
+        <item>Bedroom</item>
+        <item>Shower</item>
+        <item>Tears</item>
+        <item>Sword</item>
+        <item>Streetlight</item>
+        <item>France</item>
+        <item>Germany</item>
+        <item>Africa</item>
+        <item>Europe</item>
+        <item>Mushrooms</item>
+        <item>ToiletPaper</item>
+        <item>StirFry</item>
+        <item>Family</item>
+        <item>Bacon</item>
+        <item>Shadow</item>
+        <item>Pocketknife</item>
+        <item>Watermelon</item>
+        <item>Camel</item>
+        <item>Pyramid</item>
+        <item>China</item>
+        <item>Bow</item>
+        <item>Cookie jar</item>
+        <item>Backpack</item>
+        <item>Airplane</item>
+        <item>CruiseShip</item>
+        <item>Bookmark</item>
+        <item>Watch</item>
+        <item>Button</item>
+        <item>Pig</item>
+        <item>Yoshi</item>
+        <item>Fountain</item>
+        <item>Teabag</item>
+        <item>Four-leaf clover</item>
+        <item>Flower</item>
+        <item>Screwdriver</item>
+        <item>Hammer</item>
+        <item>Glove</item>
+        <item>Knee</item>
+        <item>Eyes</item>
+        <item>Cow</item>
+        <item>Candle</item>
+        <item>Superman</item>
+        <item>King</item>
+        <item>Living room</item>
+        <item>TV stand</item>
+        <item>Phone</item>
+        <item>Hat</item>
+        <item>Baseball</item>
+        <item>Window</item>
+        <item>Spider</item>
+        <item>Neck</item>
+        <item>Giraffe</item>
+        <item>Fork</item>
+        <item>Spoon</item>
+        <item>Knife</item>
+        <item>Highway</item>
+        <item>Bicycle</item>
+        <item>Tricycle</item>
+        <item>Lake</item>
+        <item>Rain</item>
+        <item>Lottery</item>
+        <item>Chair</item>
+        <item>RubberDuck</item>
+        <item>Lost</item>
+        <item>Maze</item>
+        <item>Ski Resort</item>
+        <item>Italy</item>
+        <item>Greece</item>
+        <item>Spain</item>
+        <item>Russia</item>
+        <item>Earth</item>
+        <item>Sun</item>
+        <item>Saturn</item>
+        <item>Ice cream</item>
+        <item>Headset</item>
+        <item>LittleRedRidingHood</item>
+        <item>Fish</item>
+        <item>Witch</item>
+        <item>Moon</item>
+    </string-array>
 </resources>
