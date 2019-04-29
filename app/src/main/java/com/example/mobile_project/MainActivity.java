@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         drawButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                final Intent draw = new Intent(MainActivity.this, DrawActivity.class);
+                final Intent draw = new Intent(MainActivity.this, LobbyActivity.class);
                 startActivity(draw);
             }
         });

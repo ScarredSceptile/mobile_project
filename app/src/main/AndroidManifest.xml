@@ -6,6 +6,13 @@
     <uses-permission-sdk-23 android:name="READ_PHONE_STATE " />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 
     <application
         android:allowBackup="true"
@@ -22,6 +29,12 @@
         <activity
             android:name=".DrawActivity"
             android:label="@string/title_activity_draw"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LobbyActivity"
+            android:label="LobbyActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".JoinActivity"
+            android:label="JoinActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>

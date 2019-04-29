@@ -34,12 +34,13 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:textColor="@android:color/black"
+        android:hint="Room name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/createBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
