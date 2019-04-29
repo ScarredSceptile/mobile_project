@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Mobile_Project</string>
     <string name="title_activity_draw">DrawActivity</string>
+    <string name="service_id">MobileRyktetGaar</string>
 </resources>

@@ -3,7 +3,7 @@ package com.example.mobile_project;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-public class LobbyActivity extends AppCompatActivity {
+public class LobbyActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
