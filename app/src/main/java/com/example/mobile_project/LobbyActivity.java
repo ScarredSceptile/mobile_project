@@ -75,6 +75,7 @@ public class LobbyActivity extends AppCompatActivity{
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(LobbyActivity.this, "Unable to create lobby", Toast.LENGTH_LONG).show();
+                System.out.println(e.getMessage());
             }
         });
     }
