@@ -1,17 +1,20 @@
 package com.example.mobile_project;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.nearby.Nearby;
 import com.google.android.gms.nearby.connection.AdvertisingOptions;
 import com.google.android.gms.nearby.connection.ConnectionLifecycleCallback;
 import com.google.android.gms.nearby.connection.Strategy;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 public class LobbyActivity extends AppCompatActivity{
@@ -54,7 +57,7 @@ public class LobbyActivity extends AppCompatActivity{
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startAdvertising();
             }
         });
     }
@@ -67,6 +70,11 @@ public class LobbyActivity extends AppCompatActivity{
             @Override
             public void onSuccess(Void aVoid) {
 
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(LobbyActivity.this, "Unable to create lobby", Toast.LENGTH_LONG).show();
             }
         });
     }

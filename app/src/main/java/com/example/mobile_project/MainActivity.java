@@ -23,6 +23,19 @@ public class MainActivity extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
         }
+        if (ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
+        }
+        //Other needed request codes:
+        /*
+            BLUETOOTH
+            BLUETOOTH_ADMIN
+            ACCESS_WIFI_STATE
+            CHANGE_WIFI_STATE
+            ACCESS_FINE_LOCATION (only for devices running Q (and onwards) in place of COARSE location
+
+         */
 
         Button drawButton = findViewById(R.id.button);
         drawButton.setOnClickListener(new View.OnClickListener() {
@@ -30,6 +43,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 final Intent draw = new Intent(MainActivity.this, LobbyActivity.class);
                 startActivity(draw);
+            }
+        });
+
+        Button hostButton = findViewById(R.id.lobbyBtn);
+        hostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent host = new Intent(MainActivity.this, LobbyActivity.class);
+                startActivity(host);
+            }
+        });
+
+        Button joinButton = findViewById(R.id.joinBtn);
+        joinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent join = new Intent(MainActivity.this, JoinActivity.class);
+                startActivity(join);
             }
         });
     }
@@ -53,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
                 }
                 return;
+            }
+
+            case 2: {
+                //Eeeeeh
             }
 
             // other 'case' lines to check for other
