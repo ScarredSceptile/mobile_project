@@ -98,10 +98,6 @@ public class DrawActivity extends AppCompatActivity {
             }
         }.start();
 
-
-
-
-
     }
 
 }

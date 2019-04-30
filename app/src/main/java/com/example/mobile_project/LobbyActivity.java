@@ -12,14 +12,18 @@ import android.widget.Toast;
 
 import com.google.android.gms.nearby.Nearby;
 import com.google.android.gms.nearby.connection.AdvertisingOptions;
+import com.google.android.gms.nearby.connection.ConnectionInfo;
 import com.google.android.gms.nearby.connection.ConnectionLifecycleCallback;
+import com.google.android.gms.nearby.connection.ConnectionResolution;
+import com.google.android.gms.nearby.connection.Payload;
+import com.google.android.gms.nearby.connection.PayloadCallback;
+import com.google.android.gms.nearby.connection.PayloadTransferUpdate;
 import com.google.android.gms.nearby.connection.Strategy;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 public class LobbyActivity extends AppCompatActivity{
 
-    ConnectionLifecycleCallback connectionLifecycleCallback;
     EditText room;
 
     @Override
@@ -63,13 +67,38 @@ public class LobbyActivity extends AppCompatActivity{
     }
 
     private void startAdvertising() {
-        AdvertisingOptions advertisingOptions = new AdvertisingOptions.Builder().setStrategy(Strategy.P2P_CLUSTER).build();
+        AdvertisingOptions advertisingOptions = new AdvertisingOptions.Builder().setStrategy(Strategy.P2P_POINT_TO_POINT).build();
         Nearby.getConnectionsClient(LobbyActivity.this).startAdvertising(room.getText().toString(),
-                "@string/service_id", connectionLifecycleCallback,
+                "@string/service_id", new ConnectionLifecycleCallback() {
+                    @Override
+                    public void onConnectionInitiated(@NonNull String s, @NonNull ConnectionInfo connectionInfo) {
+                        Nearby.getConnectionsClient(LobbyActivity.this).acceptConnection(s, new PayloadCallback() {
+                            @Override
+                            public void onPayloadReceived(@NonNull String s, @NonNull Payload payload) {
+
+                            }
+
+                            @Override
+                            public void onPayloadTransferUpdate(@NonNull String s, @NonNull PayloadTransferUpdate payloadTransferUpdate) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onConnectionResult(@NonNull String s, @NonNull ConnectionResolution connectionResolution) {
+
+                    }
+
+                    @Override
+                    public void onDisconnected(@NonNull String s) {
+
+                    }
+                },
                 advertisingOptions).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-
+                Toast.makeText(LobbyActivity.this, "Test", Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
