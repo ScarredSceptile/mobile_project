@@ -74,13 +74,21 @@ public class JoinActivity extends AppCompatActivity {
                                                         System.out.println("Paylaod received");
                                                         if (payload.getType() == Payload.Type.BYTES) {
                                                             String payloadWord = new String(payload.asBytes(), StandardCharsets.UTF_8);
-                                                            Long payloadId = payload.getId();
-                                                            filePayloadWords.put(payloadId, payloadWord);
+                                                            Long payloadId = addPayloadWord(payloadWord);
                                                             processFilePayload(payloadId);
                                                         } else if (payload.getType() == Payload.Type.FILE) {
                                                             incomingFilePayload.put(payload.getId(), payload);
                                                         }
                                                     }
+
+                                                    private long addPayloadWord(String payloadWordMessage) {
+                                                        String[] parts = payloadWordMessage.split(":");
+                                                        long payloadId = Long.parseLong(parts[0]);
+                                                        String filename = parts[1];
+                                                        filePayloadWords.put(payloadId, filename);
+                                                        return payloadId;
+                                                    }
+
 
                                                     private void processFilePayload(long payloadId) {
                                                         // BYTES and FILE could be received in any order, so we call when either the BYTES or the FILE
@@ -89,8 +97,14 @@ public class JoinActivity extends AppCompatActivity {
                                                         Payload filePayload = completedFilePayloads.get(payloadId);
                                                         String word = filePayloadWords.get(payloadId);
 
+                                                        System.out.println("Payload processing");
+                                                        System.out.println(word);
+
                                                         if (filePayload != null && word != null) {
                                                             completedFilePayloads.remove(payloadId);
+                                                            System.out.println(filePayload.toString());
+
+                                                            System.out.println("Payload has processed");
 
                                                             // Get the received file (which will be in the Downloads folder)
                                                             File payloadFile = filePayload.asFile().asJavaFile();
@@ -107,9 +121,8 @@ public class JoinActivity extends AppCompatActivity {
                                                             long payloadId = payloadTransferUpdate.getPayloadId();
                                                             Payload payload = incomingFilePayload.remove(payloadId);
                                                             completedFilePayloads.put(payloadId, payload);
-                                                            if (payload.getType() == Payload.Type.FILE) {
-                                                                processFilePayload(payloadId);
-                                                            }
+                                                            System.out.println("Payload updated");
+                                                            processFilePayload(payloadId);
 
                                                         }
                                                     }

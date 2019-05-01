@@ -104,7 +104,10 @@ public class DrawActivity extends AppCompatActivity {
                                 ostream.close();
                                 try {
                                     Payload filePayLoad = Payload.fromFile(newBitmap);
-                                    Payload wordPayLoad = Payload.fromBytes(drawWord.getBytes(StandardCharsets.UTF_8));
+
+                                    String payloadWord = filePayLoad.getId() + ":" + drawWord;
+
+                                    Payload wordPayLoad = Payload.fromBytes(payloadWord.getBytes(StandardCharsets.UTF_8));
                                     Nearby.getConnectionsClient(DrawActivity.this).sendPayload(endPointID, wordPayLoad);
                                     Nearby.getConnectionsClient(DrawActivity.this).sendPayload(endPointID, filePayLoad);
                                     sentPayload = true;
