@@ -27,7 +27,6 @@ public class DrawActivity extends AppCompatActivity {
     static ImageView iv;
     private Bitmap b;
     static String filename;
-    Button clearButton;
     String endPointID;
     public static String ENDPOINTID = "com.example.mobile_project_ENDPOINTID";
 
@@ -65,60 +64,64 @@ public class DrawActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_draw);
 
                 myCanvas = findViewById(R.id.myCanvas);
-                clearButton = findViewById(R.id.button2);
+                final TextView textWait = findViewById(R.id.drawCount);
 
-                clearButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v){
-                try{
-                    myCanvas.setDrawingCacheEnabled(true);
-                    b = myCanvas.getDrawingCache();
-                    File newBitmap = null;
+                new CountDownTimer(45000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        textWait.setText(String.valueOf(millisUntilFinished / 1000));
+                        System.out.println(textWait.getText().toString());
+                    }
+
+                    public void onFinish() {
+                        try{
+                            myCanvas.setDrawingCacheEnabled(true);
+                            b = myCanvas.getDrawingCache();
+                            File newBitmap = null;
 
 
-                    try
-                    {
-                        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                            File file = new File(Environment.getExternalStorageDirectory(), "project_test");
-                            if (!file.exists()){
-                                file.mkdirs();
+                                try
+                                {
+                                    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                                    File file = new File(Environment.getExternalStorageDirectory(), "project_test");
+                                    if (!file.exists()){
+                                        file.mkdirs();
+                                    }
+
+                                    filename = file.getAbsolutePath() + "/" + drawWord + ".png";
+
+                                    System.out.println("saving......................................................"+ filename);
+
+                                    newBitmap = new File(filename);
+                                }
+                                FileOutputStream ostream = new FileOutputStream(newBitmap);
+                                b.compress(Bitmap.CompressFormat.PNG, 10, ostream);
+                                ostream.close();
+                                try {
+                                    Payload filePayLoad = Payload.fromFile(newBitmap);
+                                    Nearby.getConnectionsClient(DrawActivity.this).sendPayload(endPointID, filePayLoad);
+                                    sentPayload = true;
+                                    changeView();
+                                }catch (Exception e) {
+                                    Log.e("Payload","Not able to send payload", e);
+                                }
+
                             }
-
-                            filename = file.getAbsolutePath() + drawWord + ".png";
-
-                            System.out.println("saving......................................................"+ filename);
-
-                            newBitmap = new File(filename);
+                            catch (Exception e)
+                            {
+                                e.printStackTrace();
+                            }finally
+                            {
+                                myCanvas.setDrawingCacheEnabled(false);
+                            }
                         }
-                        FileOutputStream ostream = new FileOutputStream(newBitmap);
-                        b.compress(Bitmap.CompressFormat.PNG, 10, ostream);
-                        ostream.close();
-                        try {
-                            Payload filePayLoad = Payload.fromFile(newBitmap);
-                            Nearby.getConnectionsClient(DrawActivity.this).sendPayload(endPointID, filePayLoad);
-                            sentPayload = true;
-                            changeView();
-                        }catch (Exception e) {
-                            Log.e("Payload","Not able to send payload", e);
+                        catch(Exception e){
+                            e.printStackTrace();
                         }
 
-                    }
-                    catch (Exception e)
-                    {
-                        e.printStackTrace();
-                    }finally
-                    {
-                        myCanvas.setDrawingCacheEnabled(false);
-                    }
-                }
-                catch(Exception e){
-                    e.printStackTrace();
-                }
-
 
                     }
 
-                });
+                }.start();
 
             }
         }.start();
