@@ -75,7 +75,6 @@ public class DrawActivity extends AppCompatActivity {
                 new CountDownTimer(45000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         textWait.setText(String.valueOf(millisUntilFinished / 1000));
-                        System.out.println(textWait.getText().toString());
                     }
 
                     public void onFinish() {

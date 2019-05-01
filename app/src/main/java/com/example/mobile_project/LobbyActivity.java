@@ -71,6 +71,7 @@ public class LobbyActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 startAdvertising();
+                setContentView(R.layout.activity_wait);
             }
         });
     }
