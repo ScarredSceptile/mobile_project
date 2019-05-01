@@ -63,7 +63,7 @@ public class JoinActivity extends AppCompatActivity {
                         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                Toast.makeText(JoinActivity.this, "test", Toast.LENGTH_LONG).show();
+                                Toast.makeText(JoinActivity.this, "Joining. Please wait.", Toast.LENGTH_LONG).show();
                                 Nearby.getConnectionsClient(JoinActivity.this)
                                         .requestConnection("test", s, new ConnectionLifecycleCallback() {
                                             @Override
