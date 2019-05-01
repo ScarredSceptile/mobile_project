@@ -161,7 +161,7 @@ public class LobbyActivity extends AppCompatActivity{
                 advertisingOptions).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(LobbyActivity.this, "Test", Toast.LENGTH_LONG).show();
+                Toast.makeText(LobbyActivity.this, "Lobby created", Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
