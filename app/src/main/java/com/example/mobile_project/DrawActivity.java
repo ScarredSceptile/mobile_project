@@ -6,11 +6,11 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +19,7 @@ import com.google.android.gms.nearby.connection.Payload;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 public class DrawActivity extends AppCompatActivity {
@@ -33,6 +34,11 @@ public class DrawActivity extends AppCompatActivity {
     private static boolean payloadRecieved;
     private static boolean sentPayload;
     private static File guessImage;
+    private static String guessWord;
+
+    static EditText guess;
+    static Button guessBtn;
+    static TextView waitText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +104,8 @@ public class DrawActivity extends AppCompatActivity {
                                 ostream.close();
                                 try {
                                     Payload filePayLoad = Payload.fromFile(newBitmap);
+                                    Payload wordPayLoad = Payload.fromBytes(drawWord.getBytes(StandardCharsets.UTF_8));
+                                    Nearby.getConnectionsClient(DrawActivity.this).sendPayload(endPointID, wordPayLoad);
                                     Nearby.getConnectionsClient(DrawActivity.this).sendPayload(endPointID, filePayLoad);
                                     sentPayload = true;
                                     changeView();
@@ -128,8 +136,9 @@ public class DrawActivity extends AppCompatActivity {
 
     }
 
-    public static void getImage(File image) {
+    public static void getImage(File image, String word) {
         guessImage = image;
+        guessWord = word;
     }
 
     public static void payloadIsReceived() {
@@ -140,6 +149,12 @@ public class DrawActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_guess);
         iv = findViewById(R.id.imageView);
+        guess = findViewById(R.id.guess);
+        guessBtn = findViewById(R.id.guessBtn);
+        waitText = findViewById(R.id.waitText);
+
+        guess.setVisibility(View.INVISIBLE);
+        guessBtn.setVisibility(View.INVISIBLE);
 
         startGuess();
     }
@@ -150,6 +165,22 @@ public class DrawActivity extends AppCompatActivity {
             String filePath = guessImage.getPath();
             Bitmap bitm = BitmapFactory.decodeFile(filePath);
             iv.setImageBitmap(bitm);
+            guess.setVisibility(View.VISIBLE);
+            guessBtn.setVisibility(View.VISIBLE);
+            waitText.setVisibility(View.INVISIBLE);
+
+            guessBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    iv.setVisibility(View.INVISIBLE);
+                    waitText.setVisibility(View.VISIBLE);
+                    guess.setEnabled(false);
+                    guessBtn.setEnabled(false);
+
+                    waitText.setText("The image was a depiction of: " + guessWord
+                                    + "\nYou guessed: " + guess.getText().toString());
+                }
+            });
         }
     }
 

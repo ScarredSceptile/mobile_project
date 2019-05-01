@@ -25,12 +25,15 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 
 public class LobbyActivity extends AppCompatActivity{
 
     EditText room;
     private final SimpleArrayMap<Long, Payload> incomingFilePayload = new SimpleArrayMap<>();
     private final SimpleArrayMap<Long, Payload> completedFilePayloads = new SimpleArrayMap<>();
+    private final SimpleArrayMap<Long, String> filePayloadWords = new SimpleArrayMap<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +82,17 @@ public class LobbyActivity extends AppCompatActivity{
                     @Override
                     public void onConnectionInitiated(@NonNull String s, @NonNull ConnectionInfo connectionInfo) {
                         Nearby.getConnectionsClient(LobbyActivity.this).acceptConnection(s, new PayloadCallback() {
+                            @Override
                             public void onPayloadReceived(@NonNull String s, @NonNull Payload payload) {
                                 System.out.println("Paylaod received");
-                                incomingFilePayload.put(payload.getId(), payload);
+                                if (payload.getType() == Payload.Type.BYTES) {
+                                    String payloadWord = new String(payload.asBytes(), StandardCharsets.UTF_8);
+                                    Long payloadId = payload.getId();
+                                    filePayloadWords.put(payloadId, payloadWord);
+                                    processFilePayload(payloadId);
+                                } else if (payload.getType() == Payload.Type.FILE) {
+                                    incomingFilePayload.put(payload.getId(), payload);
+                                }
                             }
 
                             private void processFilePayload(long payloadId) {
@@ -89,18 +100,19 @@ public class LobbyActivity extends AppCompatActivity{
                                 // payload is completely received. The file payload is considered complete only when both have
                                 // been received.
                                 Payload filePayload = completedFilePayloads.get(payloadId);
-                                if (filePayload != null) {
+                                String word = filePayloadWords.get(payloadId);
+
+                                if (filePayload != null && word != null) {
                                     completedFilePayloads.remove(payloadId);
 
                                     // Get the received file (which will be in the Downloads folder)
                                     File payloadFile = filePayload.asFile().asJavaFile();
 
                                     DrawActivity.payloadIsReceived();
-                                    DrawActivity.getImage(payloadFile);
+                                    DrawActivity.getImage(payloadFile, word);
                                     DrawActivity.startGuess();
                                 }
                             }
-
 
                             @Override
                             public void onPayloadTransferUpdate(@NonNull String s, @NonNull PayloadTransferUpdate payloadTransferUpdate) {
@@ -108,7 +120,10 @@ public class LobbyActivity extends AppCompatActivity{
                                     long payloadId = payloadTransferUpdate.getPayloadId();
                                     Payload payload = incomingFilePayload.remove(payloadId);
                                     completedFilePayloads.put(payloadId, payload);
-                                    processFilePayload(payloadId);
+                                    if (payload.getType() == Payload.Type.FILE) {
+                                        processFilePayload(payloadId);
+                                    }
+
                                 }
                             }
                         });
