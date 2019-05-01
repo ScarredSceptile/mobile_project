@@ -75,7 +75,7 @@ public class LobbyActivity extends AppCompatActivity{
                         Nearby.getConnectionsClient(LobbyActivity.this).acceptConnection(s, new PayloadCallback() {
                             @Override
                             public void onPayloadReceived(@NonNull String s, @NonNull Payload payload) {
-
+                                System.out.println("Payload received");
                             }
 
                             @Override
@@ -87,12 +87,12 @@ public class LobbyActivity extends AppCompatActivity{
 
                     @Override
                     public void onConnectionResult(@NonNull String s, @NonNull ConnectionResolution connectionResolution) {
-
+                        System.out.println("Connected");
                     }
 
                     @Override
                     public void onDisconnected(@NonNull String s) {
-
+                        System.out.println("Disconnected");
                     }
                 },
                 advertisingOptions).addOnSuccessListener(new OnSuccessListener<Void>() {

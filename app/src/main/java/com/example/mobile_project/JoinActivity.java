@@ -59,7 +59,7 @@ public class JoinActivity extends AppCompatActivity {
                                                 Nearby.getConnectionsClient(JoinActivity.this).acceptConnection(s, new PayloadCallback() {
                                                     @Override
                                                     public void onPayloadReceived(@NonNull String s, @NonNull Payload payload) {
-
+                                                        System.out.println("Paylaod received");
                                                     }
 
                                                     @Override
@@ -71,18 +71,19 @@ public class JoinActivity extends AppCompatActivity {
 
                                             @Override
                                             public void onConnectionResult(@NonNull String s, @NonNull ConnectionResolution connectionResolution) {
-
+                                                System.out.println("Connected");
                                             }
 
                                             @Override
                                             public void onDisconnected(@NonNull String s) {
                                                 //We have been disconnected, ono
+                                                System.out.println("Disonnected");
                                                 finish();
                                             }
                                         }).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-
+                                        System.out.println("Success");
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
