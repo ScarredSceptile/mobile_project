@@ -136,6 +136,8 @@ public class JoinActivity extends AppCompatActivity {
 
                                                 draw.putExtra(DrawActivity.ENDPOINTID, s);
 
+                                                Nearby.getConnectionsClient(JoinActivity.this).stopDiscovery();
+
                                                 startActivity(draw);
 
                                             }
@@ -179,6 +181,13 @@ public class JoinActivity extends AppCompatActivity {
                 System.out.println(e.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //Go back to main menu. Connections will already be disconnected, so no need to keep on with them
+        finish();
     }
 
 }

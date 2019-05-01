@@ -85,7 +85,7 @@ public class LobbyActivity extends AppCompatActivity{
                         Nearby.getConnectionsClient(LobbyActivity.this).acceptConnection(s, new PayloadCallback() {
                             @Override
                             public void onPayloadReceived(@NonNull String s, @NonNull Payload payload) {
-                                System.out.println("Paylaod received");
+                                System.out.println("Payload received");
                                 if (payload.getType() == Payload.Type.BYTES) {
                                     String payloadWord = new String(payload.asBytes(), StandardCharsets.UTF_8);
                                     Long payloadId = addPayloadWord(payloadWord);
@@ -112,11 +112,9 @@ public class LobbyActivity extends AppCompatActivity{
                                 String word = filePayloadWords.get(payloadId);
 
                                 System.out.println("Payload processing");
-                                System.out.println(word);
 
                                 if (filePayload != null && word != null) {
                                     completedFilePayloads.remove(payloadId);
-                                    System.out.println(filePayload.toString());
 
                                     System.out.println("Payload has processed");
 
@@ -150,12 +148,15 @@ public class LobbyActivity extends AppCompatActivity{
 
                         draw.putExtra(DrawActivity.ENDPOINTID, s);
 
+                        Nearby.getConnectionsClient(LobbyActivity.this).stopAdvertising();
+
                         startActivity(draw);
                     }
 
                     @Override
                     public void onDisconnected(@NonNull String s) {
                         System.out.println("Disconnected");
+                        finish();
                     }
                 },
                 advertisingOptions).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -170,5 +171,11 @@ public class LobbyActivity extends AppCompatActivity{
                 System.out.println(e.getMessage());
             }
         });
+    }
+
+    public void onResume() {
+        super.onResume();
+        //Go back to main menu. Connections will already be disconnected, so no need to keep on with them
+        finish();
     }
 }

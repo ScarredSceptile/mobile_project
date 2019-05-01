@@ -186,4 +186,11 @@ public class DrawActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        //Just to disconnect
+        Nearby.getConnectionsClient(DrawActivity.this).disconnectFromEndpoint(endPointID);
+        finish();
+    }
+
 }
