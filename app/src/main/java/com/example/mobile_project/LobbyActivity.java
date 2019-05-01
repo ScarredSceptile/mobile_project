@@ -71,7 +71,6 @@ public class LobbyActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 startAdvertising();
-                setContentView(R.layout.activity_wait);
             }
         });
     }
@@ -162,6 +161,7 @@ public class LobbyActivity extends AppCompatActivity{
                 advertisingOptions).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
+                setContentView(R.layout.activity_wait);
                 Toast.makeText(LobbyActivity.this, "Lobby created", Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -171,11 +171,5 @@ public class LobbyActivity extends AppCompatActivity{
                 System.out.println(e.getMessage());
             }
         });
-    }
-
-    public void onResume() {
-        super.onResume();
-        //Go back to main menu. Connections will already be disconnected, so no need to keep on with them
-        finish();
     }
 }

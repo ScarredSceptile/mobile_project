@@ -182,12 +182,4 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        //Go back to main menu. Connections will already be disconnected, so no need to keep on with them
-        finish();
-    }
-
 }
