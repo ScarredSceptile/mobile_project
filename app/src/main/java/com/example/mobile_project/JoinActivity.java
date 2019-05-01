@@ -1,5 +1,6 @@
 package com.example.mobile_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -23,19 +24,21 @@ import com.google.android.gms.nearby.connection.Strategy;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JoinActivity extends AppCompatActivity {
 
     ListView list;
-    List<String> roomIds;
-    ArrayAdapter adapter;
+    static List<String> roomIds;
+    static ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
         list = findViewById(R.id.roomList);
+        roomIds = new ArrayList<>();
         startDiscovery();
 
     }
@@ -45,15 +48,17 @@ public class JoinActivity extends AppCompatActivity {
         Nearby.getConnectionsClient(JoinActivity.this)
                 .startDiscovery("@string/service_id", new EndpointDiscoveryCallback() {
                     @Override
-                    public void onEndpointFound(@NonNull String s, @NonNull DiscoveredEndpointInfo discoveredEndpointInfo) {
-                        roomIds.add(s);
+                    public void onEndpointFound(@NonNull final String s, @NonNull DiscoveredEndpointInfo discoveredEndpointInfo) {
+                        System.out.println(s);
+                        roomIds.add(discoveredEndpointInfo.getEndpointName());
                         adapter = new ArrayAdapter(JoinActivity.this, android.R.layout.simple_list_item_1, roomIds);
                         list.setAdapter(adapter);
                         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Toast.makeText(JoinActivity.this, "test", Toast.LENGTH_LONG).show();
                                 Nearby.getConnectionsClient(JoinActivity.this)
-                                        .requestConnection("test", "@string/service_id", new ConnectionLifecycleCallback() {
+                                        .requestConnection("test", s, new ConnectionLifecycleCallback() {
                                             @Override
                                             public void onConnectionInitiated(@NonNull String s, @NonNull ConnectionInfo connectionInfo) {
                                                 Nearby.getConnectionsClient(JoinActivity.this).acceptConnection(s, new PayloadCallback() {
@@ -72,6 +77,9 @@ public class JoinActivity extends AppCompatActivity {
                                             @Override
                                             public void onConnectionResult(@NonNull String s, @NonNull ConnectionResolution connectionResolution) {
                                                 System.out.println("Connected");
+                                                final Intent draw = new Intent(JoinActivity.this, DrawActivity.class);
+                                                startActivity(draw);
+
                                             }
 
                                             @Override
@@ -88,6 +96,7 @@ public class JoinActivity extends AppCompatActivity {
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
+                                        System.out.println(e.getMessage());
 
                                     }
                                 });
@@ -103,12 +112,13 @@ public class JoinActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(JoinActivity.this, "test", Toast.LENGTH_LONG).show();
+                        //Yay, we can look for advertisers
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(JoinActivity.this, "Unable to search for lobbies.", Toast.LENGTH_LONG).show();
+                System.out.println(e.getMessage());
             }
         });
     }

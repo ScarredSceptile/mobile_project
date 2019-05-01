@@ -1,5 +1,6 @@
 package com.example.mobile_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -88,6 +89,8 @@ public class LobbyActivity extends AppCompatActivity{
                     @Override
                     public void onConnectionResult(@NonNull String s, @NonNull ConnectionResolution connectionResolution) {
                         System.out.println("Connected");
+                        final Intent draw = new Intent(LobbyActivity.this, DrawActivity.class);
+                        startActivity(draw);
                     }
 
                     @Override
