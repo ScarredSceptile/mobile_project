@@ -20,15 +20,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED &&
+                != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.BLUETOOTH)
-                        != PackageManager.PERMISSION_GRANTED &&
+                        != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.BLUETOOTH_ADMIN)
+                        != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.BLUETOOTH,
-                    Manifest.permission.BLUETOOTH_ADMIN},1);
+                    Manifest.permission.BLUETOOTH_ADMIN,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION},1);
         }
         /*if (ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         drawButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                final Intent draw = new Intent(MainActivity.this, LobbyActivity.class);
+                final Intent draw = new Intent(MainActivity.this, DrawActivity.class);
                 startActivity(draw);
             }
         });
