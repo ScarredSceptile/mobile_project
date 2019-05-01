@@ -3,6 +3,7 @@ package com.example.mobile_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.util.SimpleArrayMap;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +25,7 @@ import com.google.android.gms.nearby.connection.Strategy;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +35,9 @@ public class JoinActivity extends AppCompatActivity {
     static List<String> roomIds;
     static ArrayAdapter adapter;
 
+    private final SimpleArrayMap<Long, Payload> incomingFilePayload = new SimpleArrayMap<>();
+    private final SimpleArrayMap<Long, Payload> completedFilePayloads = new SimpleArrayMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +45,6 @@ public class JoinActivity extends AppCompatActivity {
         list = findViewById(R.id.roomList);
         roomIds = new ArrayList<>();
         startDiscovery();
-
     }
 
     private void startDiscovery() {
@@ -65,11 +69,35 @@ public class JoinActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onPayloadReceived(@NonNull String s, @NonNull Payload payload) {
                                                         System.out.println("Paylaod received");
+                                                        incomingFilePayload.put(payload.getId(), payload);
                                                     }
+
+                                                    private void processFilePayload(long payloadId) {
+                                                        // BYTES and FILE could be received in any order, so we call when either the BYTES or the FILE
+                                                        // payload is completely received. The file payload is considered complete only when both have
+                                                        // been received.
+                                                        Payload filePayload = completedFilePayloads.get(payloadId);
+                                                        if (filePayload != null) {
+                                                            completedFilePayloads.remove(payloadId);
+
+                                                            // Get the received file (which will be in the Downloads folder)
+                                                            File payloadFile = filePayload.asFile().asJavaFile();
+
+                                                            DrawActivity.payloadIsReceived();
+                                                            DrawActivity.getImage(payloadFile);
+                                                            DrawActivity.startGuess();
+                                                        }
+                                                    }
+
 
                                                     @Override
                                                     public void onPayloadTransferUpdate(@NonNull String s, @NonNull PayloadTransferUpdate payloadTransferUpdate) {
-
+                                                        if (payloadTransferUpdate.getStatus() == PayloadTransferUpdate.Status.SUCCESS) {
+                                                            long payloadId = payloadTransferUpdate.getPayloadId();
+                                                            Payload payload = incomingFilePayload.remove(payloadId);
+                                                            completedFilePayloads.put(payloadId, payload);
+                                                            processFilePayload(payloadId);
+                                                        }
                                                     }
                                                 });
                                             }
@@ -78,6 +106,9 @@ public class JoinActivity extends AppCompatActivity {
                                             public void onConnectionResult(@NonNull String s, @NonNull ConnectionResolution connectionResolution) {
                                                 System.out.println("Connected");
                                                 final Intent draw = new Intent(JoinActivity.this, DrawActivity.class);
+
+                                                draw.putExtra(DrawActivity.ENDPOINTID, s);
+
                                                 startActivity(draw);
 
                                             }
@@ -122,4 +153,5 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
     }
+
 }

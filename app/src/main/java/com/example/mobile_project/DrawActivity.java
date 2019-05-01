@@ -1,16 +1,22 @@
 package com.example.mobile_project;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.gms.nearby.Nearby;
+import com.google.android.gms.nearby.connection.Payload;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Random;
@@ -18,18 +24,30 @@ import java.util.Random;
 public class DrawActivity extends AppCompatActivity {
 
     MyCanvas myCanvas;
+    static ImageView iv;
     private Bitmap b;
+    static String filename;
     Button clearButton;
-    Canvas canvas;
+    String endPointID;
+    public static String ENDPOINTID = "com.example.mobile_project_ENDPOINTID";
+
+    private static boolean payloadRecieved;
+    private static boolean sentPayload;
+    private static File guessImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent intent = getIntent();
+        endPointID = intent.getStringExtra(ENDPOINTID);
+
+        payloadRecieved = sentPayload = false;
 
         setContentView(R.layout.activity_word);
 
         String[] words = this.getResources().getStringArray(R.array.words);
-        String drawWord = words[new Random().nextInt(words.length)];
+        final String drawWord = words[new Random().nextInt(words.length)];
 
         final TextView wordView = findViewById(R.id.rndWord);
         final TextView timerText = findViewById(R.id.textTimer);
@@ -66,14 +84,24 @@ public class DrawActivity extends AppCompatActivity {
                                 file.mkdirs();
                             }
 
-                            System.out.println("saving......................................................"+ file.getAbsolutePath() + "test" + ".png");
+                            filename = file.getAbsolutePath() + drawWord + ".png";
 
-                            newBitmap = new File(file.getAbsolutePath() + "/test" + ".png");
+                            System.out.println("saving......................................................"+ filename);
+
+                            newBitmap = new File(filename);
                         }
                         FileOutputStream ostream = new FileOutputStream(newBitmap);
                         b.compress(Bitmap.CompressFormat.PNG, 10, ostream);
-                        System.out.println("saving......................................................");
                         ostream.close();
+                        try {
+                            Payload filePayLoad = Payload.fromFile(newBitmap);
+                            Nearby.getConnectionsClient(DrawActivity.this).sendPayload(endPointID, filePayLoad);
+                            sentPayload = true;
+                            changeView();
+                        }catch (Exception e) {
+                            Log.e("Payload","Not able to send payload", e);
+                        }
+
                     }
                     catch (Exception e)
                     {
@@ -95,6 +123,31 @@ public class DrawActivity extends AppCompatActivity {
             }
         }.start();
 
+    }
+
+    public static void getImage(File image) {
+        guessImage = image;
+    }
+
+    public static void payloadIsReceived() {
+        payloadRecieved = true;
+    }
+
+    void changeView() {
+
+        setContentView(R.layout.activity_guess);
+        iv = findViewById(R.id.imageView);
+
+        startGuess();
+    }
+
+    public static void startGuess() {
+        if (payloadRecieved && sentPayload) {
+
+            String filePath = guessImage.getPath();
+            Bitmap bitm = BitmapFactory.decodeFile(filePath);
+            iv.setImageBitmap(bitm);
+        }
     }
 
 }
